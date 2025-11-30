@@ -1,4 +1,5 @@
 import axios from "axios";
+import { styleText } from "node:util";
 
 // returns an array of all members in SimplyPlural system
 export const getAllMembers = async () => {
@@ -72,6 +73,7 @@ export const getPluralKitId = async (simplyPluralId) => {
     return member.data.content.pkId;
 };
 
+// sets pluralkit fronters to a given array of pluralkit member ids
 export const setPluralKitFronters = async (members) => {
     try {
         await axios.post(
@@ -87,8 +89,11 @@ export const setPluralKitFronters = async (members) => {
         );
     } catch (error) {
         if (error.response.data.code === 40004) {
-            console.error(
-                "failed to set fronters: Member list identical to current fronter list."
+            console.warn(
+                styleText(
+                    ["yellow"],
+                    "member list is identical to current fronter list. no changes have been made."
+                )
             );
         } else {
             throw new Error(error);
