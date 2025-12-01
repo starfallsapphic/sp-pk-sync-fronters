@@ -50,6 +50,10 @@ socket.addEventListener("message", (event) => {
     }
 });
 
+socket.addEventListener("close", () => {
+    console.error("error: simplyplural conection has been closed");
+});
+
 const setCurrentFronters = async () => {
     const fronters = await getCurrentFronters();
     const allMembers = await getAllMembers();
