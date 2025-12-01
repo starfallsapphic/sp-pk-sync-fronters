@@ -87,6 +87,7 @@ export const setPluralKitFronters = async (members) => {
                 },
             }
         );
+        console.info("pluralkit switch successfully created");
     } catch (error) {
         if (error.response.data.code === 40004) {
             console.warn(
