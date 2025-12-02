@@ -24,7 +24,7 @@ socket.addEventListener("message", (event) => {
     }
     try {
         const receivedData = JSON.parse(event.data);
-        // console.log("Received JSON:", receivedData);
+        console.log("Received JSON:", receivedData);
 
         // runs if authentication fails
         if (
@@ -45,7 +45,7 @@ socket.addEventListener("message", (event) => {
             setCurrentFronters();
         }
     } catch (error) {
-        console.error("Error parsing JSON:", error);
+        // console.error("Error parsing JSON:", error);
         console.log("Received data was:", event.data);
     }
 });
