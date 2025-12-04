@@ -4,6 +4,7 @@ import {
     setPluralKitFronters,
 } from "./utils.js";
 import { styleText } from "node:util";
+// import "log-timestamp";
 
 const socket = new WebSocket("wss://api.apparyllis.com/v1/socket");
 let currentFronters = [];
@@ -20,11 +21,11 @@ socket.addEventListener("open", () => {
 socket.addEventListener("message", (event) => {
     // don't bother with the "pong" messages from pinging
     if (event.data === "pong") {
-        return;
+        // console.info(event.data);
     }
     try {
         const receivedData = JSON.parse(event.data);
-        console.log("Received JSON:", receivedData);
+        console.info("Received JSON:", receivedData);
 
         // runs if authentication fails
         if (
@@ -87,6 +88,7 @@ const setCurrentFronters = async () => {
 
 // keeps the connection alive
 const pingServer = () => {
+    console.log("pinging");
     socket.send("ping");
 };
 
